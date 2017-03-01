@@ -62,5 +62,11 @@
         return $found_author;
     }
 
+    function update($property, $value)
+    {
+        $GLOBALS['DB']->exec("UPDATE authors SET {$property} = '{$value}' WHERE id = {$this->getId()};");
+        $this->{$property} = $value;
+    }
+
 }
  ?>
