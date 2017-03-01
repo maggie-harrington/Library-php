@@ -24,5 +24,16 @@
             $this->assertEquals($title, $result);
         }
 
+        function testGetId()
+        {
+            $title = "Sky";
+            $id = 1;
+            $test_book = new Book($title, $id);
+
+            $result = $test_book->getId();
+
+            $this->assertEquals($id, $result);
+        }
+
     }
  ?>

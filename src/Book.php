@@ -16,5 +16,10 @@
             return $this->title;
         }
 
+        function getId()
+        {
+            return $this->id;
+        }
+
     }
  ?>
