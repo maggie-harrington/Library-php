@@ -97,6 +97,22 @@
             $this->assertEquals([], $result);
         }
 
-        
+        function testFind()
+        {
+            $name = "S. King";
+            $test_author = new Author($name);
+            $test_author->save();
+
+            $name2 = "Patty Smith";
+            $test_author2 = new Author($name2);
+            $test_author2->save();
+
+            $id = $test_author->getId();
+            $result = Author::find($id);
+
+            $this->assertEquals($test_author, $result);
+        }
+
+
 
     }

@@ -50,5 +50,17 @@
         $GLOBALS['DB']->exec("DELETE FROM authors;");
     }
 
+    static function find($id)
+    {
+        $returned_authors = $GLOBALS['DB']->query("SELECT * FROM authors WHERE id = {$id};");
+        $found_author = null;
+        foreach($returned_authors as $author) {
+            $name = $author['name'];
+            $id = $author['id'];
+            $found_author = new Author($name, $id);
+        }
+        return $found_author;
+    }
+
 }
  ?>
