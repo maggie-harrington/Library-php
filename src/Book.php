@@ -32,5 +32,24 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        static function getAll()
+        {
+            $all_books = $GLOBALS['DB']->query("SELECT * FROM books;");
+            $array_of_books = array();
+            foreach ($all_books as $book)
+            {
+                $title = $book['title'];
+                $id = $book['id'];
+                $new_book = new Book($title, $id);
+                array_push($array_of_books, $new_book);
+            }
+            return $array_of_books;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM books;");
+        }
+
     }
  ?>

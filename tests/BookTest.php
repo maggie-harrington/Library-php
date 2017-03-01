@@ -81,7 +81,21 @@
             $this->assertEquals([$test_book, $test_book2], $result);
         }
 
-        
+        function testDeleteAll()
+        {
+            $title = "Sky";
+            $test_book = new Book($title);
+            $test_book->save();
+
+            $title2 = "It";
+            $test_book2 = new Book($title2);
+            $test_book2->save();
+
+            Book::deleteAll();
+            $result = Book::getAll();
+
+            $this->assertEquals([], $result);
+        }
 
 
     }
