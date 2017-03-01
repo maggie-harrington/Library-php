@@ -112,6 +112,20 @@
             $this->assertEquals($test_book, $result);
         }
 
+        function testUpdate()
+        {
+            $title = "Sky";
+            $test_book = new Book($title);
+            $test_book->save();
+
+            $update_title = "Sun";
+
+            $test_book->update($update_title);
+            $result = $test_book->getTitle();
+
+            $this->assertEquals($update_title, $result);
+        }
+
 
     }
  ?>
