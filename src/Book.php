@@ -26,5 +26,11 @@
             $this->title = $new_title;
         }
 
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO books (title) VALUES ('{$this->getTitle()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
     }
  ?>
