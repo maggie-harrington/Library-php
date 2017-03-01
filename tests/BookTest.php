@@ -35,5 +35,20 @@
             $this->assertEquals($id, $result);
         }
 
+        function testSetTitle()
+        {
+            $title = "Sky";
+            $id = 1;
+            $test_book = new Book($title, $id);
+
+            $new_title = "Sun";
+
+            $test_book->setTitle($new_title);
+            $result = $test_book->getTitle();
+
+            $this->assertEquals($new_title, $result);
+        }
+
+
     }
  ?>
