@@ -68,5 +68,10 @@
         $this->{$property} = $value;
     }
 
+    function delete()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM authors WHERE id = {$this->getId()};");
+    }
+
 }
  ?>

@@ -127,7 +127,21 @@
 
         }
 
-        
+        function testDelete()
+        {
+            $name = "S. King";
+            $test_author = new Author($name);
+            $test_author->save();
+
+            $name2 = "Patty Smith";
+            $test_author2 = new Author($name2);
+            $test_author2->save();
+
+            $test_author2->delete();
+            $result = Author::getAll();
+
+            $this->assertEquals([$test_author], $result);
+        }
 
 
     }
