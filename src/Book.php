@@ -51,5 +51,18 @@
             $GLOBALS['DB']->exec("DELETE FROM books;");
         }
 
+        static function find($id)
+        {
+            $returned_book = $GLOBALS['DB']->query("SELECT * FROM books WHERE id = {$id};");
+            $found_book = null;
+            foreach($returned_book as $book){
+                $title = $book['title'];
+                $id = $book['id'];
+                $found_book = new Book($title, $id);
+            }
+
+            return $found_book;
+        }
+
     }
  ?>

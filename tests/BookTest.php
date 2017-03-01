@@ -97,6 +97,21 @@
             $this->assertEquals([], $result);
         }
 
+        function testFind()
+        {
+            $title = "Sky";
+            $test_book = new Book($title);
+            $test_book->save();
+
+            $title2 = "It";
+            $test_book2 = new Book($title2);
+            $test_book2->save();
+
+            $result = Book::find($test_book->getId());
+
+            $this->assertEquals($test_book, $result);
+        }
+
 
     }
  ?>
