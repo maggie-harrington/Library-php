@@ -126,6 +126,23 @@
             $this->assertEquals($update_title, $result);
         }
 
+        function testDelete()
+        {
+            $title = "Sky";
+            $test_book = new Book($title);
+            $test_book->save();
+
+            $title2 = "It";
+            $test_book2 = new Book($title2);
+            $test_book2->save();
+
+            $test_book2->delete();
+            $result = Book::getAll();
+
+            $this->assertEquals([$test_book], $result);
+
+        }
+
 
     }
  ?>
