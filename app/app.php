@@ -67,6 +67,20 @@
         return $app['twig']->render('librarian.html.twig', array('books' => Book::getAll(), 'authors' => Author::getAll()));
     });
 
+    $app->patch("/update-book/{id}", function($id) use ($app) {
+        $new_title = $_POST['title'];
+        $book = Book::find($id);
+        $book->update($new_title);
+
+        return $app['twig']->render('book.html.twig', array('book' => $book));
+    });
+
+    $app->delete("/delete-book/{id}", function($id) use ($app) {
+        $book = Book::find($id);
+        $book->delete();
+        return $app['twig']->render('librarian.html.twig', array('books' => Book::getAll(), 'authors' => Author::getAll()));
+    });
+
     $app->post("/add-book-author", function() use ($app) {
         $author_id = $_POST['author_id'];
         $author = Author::find($author_id);

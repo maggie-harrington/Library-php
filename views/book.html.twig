@@ -2,12 +2,32 @@
 
 {% block one %}
 
-    <h1>Book</h1>
+    <h1>{{book.getTitle}}</h1>
+
+
+    <form action='/update-book/{{ book.getId }}' method='post'>
+        <div class='form-group'>
+            <input type="hidden" name="_method" value="patch">
+            <label for="title">Edit book title:</label>
+            <input type='text' name='title' class='form-control' value="{{book.getTitle}}" required>
+        </div>
+
+        <button type='submit' class='btn btn-primary'>Submit</button>
+    </form>
+
+    <form action="/delete-book/{{book.getId}}" method="post">
+        <input type="hidden" name="_method" value="delete"><br />
+
+        <button class="btn btn-danger" type="submit">Delete Book</button>
+    </form>
+
+    <h4><a href='/librarian'>Back to librarian main page</a></h4>
 
 {% endblock %}
 
 {% block two %}
 
+    
 
 
 {% endblock %}
