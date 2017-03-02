@@ -120,7 +120,7 @@
             $test_author->save();
             $new_name = "Stephen King";
 
-            $test_author->update('name', $new_name);
+            $test_author->update($new_name);
             $result = $test_author->getName();
 
             $this->assertEquals($new_name, $result);
@@ -172,6 +172,12 @@
             $title2 = "It";
             $test_book2 = new Book($title2);
             $test_book2->save();
+
+            $test_author->addBook($test_book);
+            $test_author->addBook($test_book2);
+            $result = $test_author->getBooks();
+
+            $this->assertEquals([$test_book, $test_book2], $result);
         }
 
 

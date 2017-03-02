@@ -29,13 +29,15 @@
 
     <h1>Books by {{author.getName}}</h1>
 
-
+    {% for book in author_books %}
+    <option value="{{book.getId}}">{{book.getTitle}}</option>
+    {% endfor %}
 
 
     <h3>Add a book</h3>
     <form action="/add-book-author" method="post">
         <input type="hidden" name="author_id" value="{{author.getId}}">
-        <select class="form-group" name="books-list">
+        <select class="form-group" name="book-list">
             {% for book in books %}
             <option value="{{book.getId}}">{{book.getTitle}}</option>
             {% endfor %}
