@@ -24,18 +24,10 @@
         return $app['twig']->render('index.html.twig');
     });
 
-    $app->get("/test", function() use ($app){
-        return $app['twig']->render('test.html.twig');
-    });
-
-    // $app->get("/test", function() use ($app){
-    //     return $app['twig']->render('test.html.twig');
-    // });
-
     $app->get("/librarian", function() use ($app) {
         return $app['twig']->render('librarian.html.twig', array('books' => Book::getAll(), 'authors' => Author::getAll()));;
     });
 
-
+    
     return $app;
  ?>
