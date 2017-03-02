@@ -2,12 +2,46 @@
 
 {% block one %}
 
-    <h1>Author</h1>
+    <h1>{{author.getName}}</h1>
+
+
+    <form action='/update-author/{{ author.getId }}' method='post'>
+        <div class='form-group'>
+            <input type="hidden" name="_method" value="patch">
+            <label for="name">Edit author name:</label>
+            <input type='text' name='name' class='form-control' value="{{author.getName}}" required>
+        </div>
+
+        <button type='submit' class='btn btn-primary'>Submit</button>
+    </form>
+
+    <h4><a href='/librarian'>Back to librarian main page</a></h4>
+
+    <form action="/delete-author/{{author.getId}}" method="post">
+        <input type="hidden" name="_method" value="delete"><br />
+
+        <button class="btn btn-danger" type="submit">Delete Author</button>
+    </form>
 
 {% endblock %}
 
 {% block two %}
 
+    <h1>Books by {{author.getName}}</h1>
+
+
+
+
+    <h3>Add a book</h3>
+    <form action="/add-book-author" method="post">
+        <input type="hidden" name="author_id" value="{{author.getId}}">
+        <select class="form-group" name="books-list">
+            {% for book in books %}
+            <option value="{{book.getId}}">{{book.getTitle}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-warning">Add</button>
+    </form>
 
 
 {% endblock %}
