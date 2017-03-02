@@ -142,6 +142,43 @@
             $result = Book::getAll();
 
             $this->assertEquals([$test_book], $result);
+        }
+
+        function testAddAuthor()
+        {
+            $title = "Sky";
+            $test_book = new Book($title);
+            $test_book->save();
+
+            $name = "S. King";
+            $test_author = new Author($name);
+            $test_author->save();
+
+            $test_book->addAuthor($test_author);
+            $result = $test_book->getAuthors();
+
+            $this->assertEquals([$test_author], $result);
+        }
+
+        function testGetAuthors()
+        {
+            $title = "Sky";
+            $test_book = new Book($title);
+            $test_book->save();
+
+            $name = "S. King";
+            $test_author = new Author($name);
+            $test_author->save();
+
+            $name2 = "Patti Smith";
+            $test_author2 = new Author($name2);
+            $test_author2->save();
+
+            $test_book->addAuthor($test_author);
+            $test_book->addAuthor($test_author2);
+            $result = $test_book->getAuthors();
+
+            $this->assertEquals([$test_author, $test_author2], $result);
 
         }
 
