@@ -62,10 +62,17 @@
         return $found_author;
     }
 
-    function update($property, $value)
+    // function update($property, $value)
+    // {
+    //     $GLOBALS['DB']->exec("UPDATE authors SET {$property} = '{$value}' WHERE id = {$this->getId()};");
+    //     $this->{$property} = $value;
+    // }
+
+
+    function update($new_name)
     {
-        $GLOBALS['DB']->exec("UPDATE authors SET {$property} = '{$value}' WHERE id = {$this->getId()};");
-        $this->{$property} = $value;
+        $GLOBALS['DB']->exec("UPDATE authors SET name = '{$new_name}' WHERE id = {$this->getId()};");
+        $this->setName($new_name);
     }
 
     function delete()
