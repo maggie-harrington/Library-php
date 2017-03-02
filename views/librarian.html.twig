@@ -2,17 +2,7 @@
 
 {% block one %}
 
-<h1>Books</h1>
-
-{% if books is not empty %}
-    {% for book in books %}
-        <ul>
-            <li><a href="/books/{{book.getId}}">{{book.getName}}</a></li>
-        </ul>
-    {% endfor %}
-{% else %}
-    <p>There are no books!</p>
-{% endif %}
+    <h2>Add a book</h2>
 
     <form action="/add-book" method="post">
         <div class="form-group">
@@ -21,7 +11,24 @@
         </div>
 
         <button type="submit" class="btn btn-info">Submit</button>
-    </form>
+    </form><br>
+
+    <h3>Books</h3>
+    {% if books is not empty %}
+        <ul>
+        {% for book in books %}
+                <li><a href="/book/{{book.getId}}">{{book.getTitle}}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no books in the library!</p>
+    {% endif %}
+
+{% endblock %}
+
+{% block two %}
+
+    <h2>Add an author</h2>
 
     <form action="/add-author" method="post">
         <div class="form-group">
@@ -30,29 +37,18 @@
         </div>
 
         <button type="submit" class="btn btn-info">Submit</button>
-    </form>
+    </form><br>
 
+    <h3>Authors</h3>
 
-{% endblock %}
-
-{% block two %}
-<p>
-    test
-</p>
-<!-- {% if course_students is not empty %}
-    <ul>
-    {% for student in course_students %}
-            <li>{{student.getName}}
-                <form action="/remove-course-student/{{student.getId}}" method="post">
-                    <input type="hidden" name="_method" value="delete">
-                    <input type="hidden" name="course_id" value="{{course.getId}}">
-                    <button type="submit" class="btn btn-danger">Remove Student from course</button>
-                </form>
-            </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>There are no students for this course yet!</p>
-{% endif %} -->
+    {% if authors is not empty %}
+        <ul>
+        {% for author in authors %}
+            <li><a href="/author/{{author.getId}}">{{author.getName}}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no authors listed!</p>
+    {% endif %}
 
 {% endblock %}

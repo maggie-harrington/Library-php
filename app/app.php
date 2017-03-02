@@ -25,9 +25,24 @@
     });
 
     $app->get("/librarian", function() use ($app) {
-        return $app['twig']->render('librarian.html.twig', array('books' => Book::getAll(), 'authors' => Author::getAll()));;
+        return $app['twig']->render('librarian.html.twig', array('books' => Book::getAll(), 'authors' => Author::getAll()));
     });
 
-    
+    $app->post("/add-author", function() use ($app) {
+        $author = new Author($_POST['name']);
+        $author->save();
+
+        return $app['twig']->render('librarian.html.twig', array('books' => Book::getAll(), 'authors' => Author::getAll()));
+        // return $app->redirect('/librarian');
+    });
+
+    $app->post("/add-book", function() use ($app) {
+        $book = new Book($_POST['title']);
+        $book->save();
+
+        return $app['twig']->render('librarian.html.twig', array('books' => Book::getAll(), 'authors' => Author::getAll()));
+    });
+
+
     return $app;
  ?>
