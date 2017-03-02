@@ -43,6 +43,15 @@
         return $app['twig']->render('librarian.html.twig', array('books' => Book::getAll(), 'authors' => Author::getAll()));
     });
 
+    $app->get("/book/{id}", function($id) use ($app) {
+        $book = Book::find($id);
+        return $app['twig']->render('book.html.twig', array('book' => $book));
+    });
+
+    $app->get("/author/{id}", function($id) use ($app) {
+        $author = Author::find($id);
+        return $app['twig']->render('author.html.twig', array('author' => $author));
+    });
 
     return $app;
  ?>
