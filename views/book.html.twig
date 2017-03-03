@@ -27,7 +27,25 @@
 
 {% block two %}
 
-    
+<h1>Authors of {{book.getTitle}}</h1>
+
+{% for author in book_authors %}
+<option value="{{author.getId}}">{{author.getName}}</option>
+{% endfor %}
+
+
+<h3>Add an author</h3>
+
+
+<form action="/add-author-book" method="post">
+    <input type="hidden" name="book_id" value="{{book.getId}}">
+    <select class="form-group" name="author-list">
+        {% for author in authors %}
+        <option value="{{author.getId}}">{{author.getName}}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-warning">Add</button>
+</form>
 
 
 {% endblock %}
